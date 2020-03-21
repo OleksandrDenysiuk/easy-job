@@ -1,6 +1,7 @@
 package com.portfolio.easyjob.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import java.util.Collection;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "users")
 public class User implements UserDetails {
 
@@ -21,6 +23,9 @@ public class User implements UserDetails {
     private String username;
 
     private String password;
+
+    @Transient
+    private String passwordConfirm;
 
     @ManyToMany
     @JoinTable(
