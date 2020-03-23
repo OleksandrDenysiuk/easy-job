@@ -1,11 +1,17 @@
 package com.portfolio.easyjob.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
 
@@ -22,4 +28,11 @@ public class Role implements GrantedAuthority {
     public String getAuthority() {
         return this.name;
     }
+
+    public Role(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+
 }
