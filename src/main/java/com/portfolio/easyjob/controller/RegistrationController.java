@@ -1,6 +1,6 @@
 package com.portfolio.easyjob.controller;
 
-import com.portfolio.easyjob.model.User;
+import com.portfolio.easyjob.domain.User;
 import com.portfolio.easyjob.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

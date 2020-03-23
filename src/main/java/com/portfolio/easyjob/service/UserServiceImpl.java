@@ -1,7 +1,7 @@
 package com.portfolio.easyjob.service;
 
-import com.portfolio.easyjob.model.Role;
-import com.portfolio.easyjob.model.User;
+import com.portfolio.easyjob.domain.Role;
+import com.portfolio.easyjob.domain.User;
 import com.portfolio.easyjob.repository.RoleRepository;
 import com.portfolio.easyjob.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;

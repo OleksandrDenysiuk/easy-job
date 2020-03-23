@@ -1,4 +1,4 @@
-package com.portfolio.easyjob.model;
+package com.portfolio.easyjob.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,11 +9,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Entity
+@MappedSuperclass
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "users")
 public class User implements UserDetails {
 
     @Id

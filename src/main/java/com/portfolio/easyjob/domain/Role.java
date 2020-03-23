@@ -1,4 +1,4 @@
-package com.portfolio.easyjob.model;
+package com.portfolio.easyjob.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

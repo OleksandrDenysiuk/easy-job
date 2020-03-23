@@ -1,6 +1,6 @@
 package com.portfolio.easyjob.bootstrap;
 
-import com.portfolio.easyjob.model.Role;
+import com.portfolio.easyjob.domain.Role;
 import com.portfolio.easyjob.repository.RoleRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
