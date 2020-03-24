@@ -8,8 +8,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 
-@MappedSuperclass
+@Entity
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,7 +35,29 @@ public class User implements UserDetails {
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+    private Collection<Role> roles = new HashSet<>();
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Employee employee;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Employer employer;
+
+    public boolean isEmployee(){
+        if(employee != null){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    public boolean isEmployer(){
+        if(employer != null){
+            return true;
+        } else{
+            return false;
+        }
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
