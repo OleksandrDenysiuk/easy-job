@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @Controller
@@ -26,8 +27,10 @@ public class RegistrationController {
 
 
     @PostMapping("/registration")
-    public String registerUser(@ModelAttribute User user){
-        userService.create(user);
+    public String registerUser(@ModelAttribute User user,
+                               @RequestParam String status){
+
+        userService.create(user, status);
         return "redirect:/";
     }
 }
