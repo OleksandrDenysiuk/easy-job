@@ -11,6 +11,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String loadPage(@AuthenticationPrincipal User user, Model model){
+        model.addAttribute("user",user);
         return "index";
     }
 }
