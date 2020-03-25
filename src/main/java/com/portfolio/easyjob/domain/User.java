@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -30,7 +31,7 @@ public class User implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "users_roles",
+            name = "user_role",
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
@@ -43,6 +44,18 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Employer employer;
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "user")
+    private Set<Document> documents = new HashSet<>();
+
+    public String documentsStatus(){
+        if(documents.size() != 0){
+            return documents.iterator().next().getStatus();
+        }
+        return "NOT_VERIFIED";
+    }
+
     public boolean isEmployee(){
         if(employee != null){
             return true;
@@ -53,6 +66,13 @@ public class User implements UserDetails {
 
     public boolean isEmployer(){
         if(employer != null){
+            return true;
+        } else{
+            return false;
+        }
+    }
+    public boolean isAdmin(){
+        if(employer == null && employee == null){
             return true;
         } else{
             return false;
