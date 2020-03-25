@@ -28,8 +28,6 @@ public class Employer{
 
     private String phoneNumber;
 
-    private String document;
-
     public Employer(User user) {
         this.user = user;
     }
