@@ -35,8 +35,6 @@ public class Employee{
 
     private String phoneNumber;
 
-    private String document;
-
     public Employee(User user) {
         this.user = user;
     }
