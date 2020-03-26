@@ -55,7 +55,7 @@ public class DocumentsController {
         documentService.save(passportPhoto, user);
 
         if (legitimationPhoto != null) {
-            documentService.save(userPhoto, user);
+            documentService.save(legitimationPhoto, user);
         }
 
         messageService.create(user, "VERIFY_DOC");
