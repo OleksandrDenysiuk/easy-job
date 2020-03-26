@@ -26,5 +26,6 @@ public class DocumentServiceImpl implements DocumentService {
         document.setStatus("IN_PROGRESS");
         user.getDocuments().add(document);
         userRepository.save(user);
+        documentRepository.save(document);
     }
 }
