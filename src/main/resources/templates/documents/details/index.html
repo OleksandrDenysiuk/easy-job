@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::body}, 'loginPage')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Doc Details For Verifying</title>
+</head>
+<body>
+<form th:action="'/documents/' + ${user.id} +'/verifying/result'" method="post">
+    <div th:each="document : ${user.documents}" class="alert alert-primary" role="alert">
+        <span th:text="${document.link}"></span>
+        <select class="custom-select my-1 mr-sm-2" th:name="${document.link}">
+            <option selected>Choose...</option>
+            <option value="VERIFIED">Good</option>
+            <option value="NOT_VERIFIED">Not good</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
+</body>
+</html>

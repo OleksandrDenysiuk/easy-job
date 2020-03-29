@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::body}, 'documentsEmployee')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Documents</title>
+</head>
+<body>
+<div class="container">
+    <th:block th:include="~{fragments/navbar/user/employee/navbar :: navbar(${user})}"/>
+    <div class="m-auto w-50">
+        <div th:if="${statusOfDocuments.equals('VERIFIED')}" class="alert alert-success" role="alert">
+            A simple success alert—check it out!<span th:text="${statusOfDocuments}"></span>
+        </div>
+        <div th:if="${statusOfDocuments.equals('IN_PROGRESS')}" class="alert alert-warning" role="alert">
+            A simple success alert—check it out!<span th:text="${statusOfDocuments}"></span>
+        </div>
+        <form th:if="${statusOfDocuments.equals('NOT_VERIFIED')}" method="post" action="/documents/employee/send"
+              enctype="multipart/form-data">
+            <div class="form-group row">
+                <label for="photo" class="col-4 col-form-label">Your photo</label>
+                <div class="custom-file">
+                    <input type="file" name="userPhoto" class="custom-file-input" id="photo">
+                    <label class="custom-file-label" for="photo">Choose file</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="passport" class="col-4 col-form-label">Passport</label>
+                <div class="custom-file">
+                    <input type="file" name="passportPhoto" class="custom-file-input" id="passport">
+                    <label class="custom-file-label" for="passport">Choose file</label>
+                </div>
+            </div>
+            <div th:if="${user.getEmployee().student}" class="form-group row">
+                <label for="legitimation" class="col-4 col-form-label">Legitimation of student</label>
+                <div class="custom-file">
+                    <input type="file" name="legitimationPhoto" class="custom-file-input" id="legitimation">
+                    <label class="custom-file-label" for="legitimation">Choose file</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Send to verification</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
