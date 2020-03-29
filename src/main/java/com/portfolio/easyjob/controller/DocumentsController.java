@@ -51,11 +51,11 @@ public class DocumentsController {
                                                 @RequestParam MultipartFile passportPhoto,
                                                 @RequestParam(required = false) MultipartFile legitimationPhoto) {
 
-        documentService.save(userPhoto, user);
-        documentService.save(passportPhoto, user);
+        documentService.save(userPhoto, user,"PHOTO_USER");
+        documentService.save(passportPhoto, user,"PASSPORT");
 
         if (legitimationPhoto != null) {
-            documentService.save(legitimationPhoto, user);
+            documentService.save(legitimationPhoto, user, "LEGITIMATION");
         }
 
         messageService.create(user, "VERIFY_DOC");
