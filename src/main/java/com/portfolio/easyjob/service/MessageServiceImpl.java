@@ -2,7 +2,6 @@ package com.portfolio.easyjob.service;
 
 
 import com.portfolio.easyjob.domain.Message;
-import com.portfolio.easyjob.domain.TypeOfMessage;
 import com.portfolio.easyjob.domain.User;
 import com.portfolio.easyjob.repository.MessageRepository;
 import com.portfolio.easyjob.repository.RoleRepository;
@@ -36,14 +35,31 @@ public class MessageServiceImpl implements MessageService{
 
         Message message = new Message();
         message.setAuthor(author);
-        TypeOfMessage typeOfMessage = typesOfMessageRepository.findByName(type);
-        message.setType(typeOfMessage);
+        message.setType(typesOfMessageRepository.findByName(type));
 
         if(type.equals("VERIFY_DOC")){
             message.setRecipient(userRepository.findByRolesEquals(roleRepository.findByName("ADMIN")));
         }
 
         return messageRepository.save(message);
+    }
+
+    @Override
+    public Message create(User author, User recipient, String type, String content) {
+        Message message = new Message();
+        message.setAuthor(author);
+        message.setType(typesOfMessageRepository.findByName(type));
+
+        if(type.equals("VERIFY_RESULT")){
+            message.setRecipient(recipient);
+            message.setContent(content);
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteByUserAndType(User user, String type) {
+        messageRepository.delete(messageRepository.findByRecipientAndType(user, typesOfMessageRepository.findByName(type)));
     }
 
     @Override
