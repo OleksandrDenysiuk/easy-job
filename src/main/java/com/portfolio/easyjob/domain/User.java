@@ -52,7 +52,7 @@ public class User implements UserDetails {
 
     public String documentsStatus(){
         if(documents.size() != 0){
-            return documents.iterator().next().getStatus();
+            return documents.iterator().next().getStatus().getName();
         }
         return "NOT_VERIFIED";
     }
