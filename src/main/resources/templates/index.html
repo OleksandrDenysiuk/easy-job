@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-Hello <span th:text="${name}"></span>
-<a href="/logout">Log out</a>
+
+<th:block th:include="~{fragments/navbar/user/employee/navbar :: navbar(${user})}"/>
 </body>
 </html>
