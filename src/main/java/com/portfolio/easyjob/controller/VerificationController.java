@@ -1,15 +1,21 @@
 package com.portfolio.easyjob.controller;
 
 import com.portfolio.easyjob.domain.User;
+import com.portfolio.easyjob.service.VerificationService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/documents")
 public class VerificationController {
+
+    private final VerificationService verificationService;
+
+    public VerificationController(VerificationService verificationService) {
+        this.verificationService = verificationService;
+    }
 
     @GetMapping("/{userId}/verifying/details")
     public String loadPageDocVerifyDetails(@PathVariable User userId,
@@ -19,10 +25,19 @@ public class VerificationController {
     }
 
     @PostMapping("/{userId}/verifying/result")
-    public String verifyResult(@PathVariable User userId,
-                               @RequestParam String userPhoto,
-                               @RequestParam String passportPhoto,
-                               @RequestParam(required = false) String legitimationPhoto) {
+    public String verifyResult(
+            @AuthenticationPrincipal User admin,
+            @PathVariable User userId,
+            @RequestParam String userPhoto,
+            @RequestParam String passportPhoto,
+            @RequestParam(required = false) String legitimationPhoto) {
+
+
+        if (legitimationPhoto != null) {
+            verificationService.verify(admin,userId, userPhoto, passportPhoto, legitimationPhoto);
+        } else {
+            verificationService.verify(admin,userId, userPhoto, passportPhoto);
+        }
 
 
         return "redirect:/messages";
