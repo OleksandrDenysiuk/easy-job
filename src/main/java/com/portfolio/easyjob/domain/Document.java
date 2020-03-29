@@ -18,7 +18,14 @@ public class Document {
 
     private String link;
 
-    private String status;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "status_id")
+    private StatusOfDocument status;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "type_id")
+    private TypeOfDocument type;
 
     @ManyToOne
     @JoinColumn(name="user_id")
