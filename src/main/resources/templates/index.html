@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-
-<th:block th:include="~{fragments/navbar/user/employee/navbar :: navbar(${user})}"/>
+<th:block th:if="${user.isEmployee()}" th:include="~{fragments/navbar/user/employee/navbar :: navbar(${user})}"/>
+<th:block th:if="${user.isEmployer()}" th:include="~{fragments/navbar/user/employer/navbar :: navbar(${user})}"/>
 </body>
 </html>
