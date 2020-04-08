@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::body}, 'formOffer')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Offer</title>
+</head>
+<body>
+<th:block th:if="${user.isEmployer()}" th:include="~{fragments/navbar/user/employer/navbar :: navbar(${user})}"/>
+<div class="container">
+    <form method="post" action="/offer/create">
+        <div class="form-group">
+            <label for="offerName">Offer name</label>
+            <input type="text" class="form-control" id="offerName" placeholder="junior developer">
+        </div>
+        <div class="form-group">
+            <label for="offerDescription">Offer description</label>
+            <textarea class="form-control" id="offerDescription" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+</body>
+</html>
