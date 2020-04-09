@@ -24,5 +24,13 @@ public class Offer {
     @JoinColumn(name = "employer_id")
     private Employer employer;
 
-
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", employer=" + employer +
+                '}';
+    }
 }
